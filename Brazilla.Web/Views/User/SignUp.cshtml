@@ -1,0 +1,68 @@
+﻿<div class="container-login100">
+	<div class="limiter" id="formContainer">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="~/images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="login100-form">
+					<span class="login100-form-title">
+						Registration
+					</span>
+
+					<div id="processContainer"></div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" id="email" placeholder="Email" />
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Login can't be empty'">
+						<input class="input100" type="text" id="login" placeholder="Login" />
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" id="password" placeholder="Password" />
+					</div>
+					
+					<div class="d-flex">
+						<input type="button" id="submitBtn" class="login100-form-btn" value="Sign up"/>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$("#submitBtn").on('click', () => {
+    let data = {
+		email: $("#email").val(),
+		login: $("#login").val(),
+		password: $("#password").val(),
+	}
+
+	let jsonData = JSON.stringify(data);
+    document.getElementById('processContainer').innerHTML = '<span class="login100-form-title" id="process"></span>';
+    document.getElementById('process').innerHTML = "Please, wait...";
+
+    $.ajax({
+		method: 'post',
+		url: '@Url.Action("SignUp", "User")',
+		data: jsonData,
+		dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
+        success: (response) => {     
+			location.href = response.redirectUrl;
+		},
+        error: (response) => {
+            document.getElementById('process').innerHTML = response.responseJSON.errorMessage;
+		},
+    });
+
+	setTimeout(() => {
+        document.getElementById('process').remove();
+    }, 5000);
+});
+</script>

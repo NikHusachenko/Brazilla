@@ -1,0 +1,70 @@
+﻿<div class="container-login100">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="~/images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Login
+					</span>
+
+					<div id="processContainer"></div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" id="login" type="text" placeholder="Login">
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" id="password" type="password" placeholder="Password">
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<input type="button" id="submitBtn" class="login100-form-btn" value="Login" />
+					</div>
+					
+					<div class="text-center p-t-136">
+						<a class="txt2" href="@Url.Action("SignUp", "User")">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$("#submitBtn").on('click', () => {
+    let data = {
+		login: $("#login").val(),
+		password: $("#password").val()
+    };
+
+    let jsonData = JSON.stringify(data);
+	document.getElementById('processContainer').innerHTML = '<span class="login100-form-title" id="process"></span>';
+    document.getElementById('process').innerHTML = "Please, wait...";
+
+    $.ajax({
+        url: '@Url.Action("SignIn", "User")',
+		method: 'post',
+		data: jsonData,
+        dataType: 'json',
+		contentType: 'application/json; charset=utf-8',
+        success: (response) => {
+            location.href = response.redirectUrl;
+		},
+		error: (response) => {
+			document.getElementById('process').innerHTML = response.responseJSON.errorMessage;
+		},
+    });
+
+    setTimeout(() => {
+        document.getElementById('process').remove();
+    }, 5000);
+});
+</script>

@@ -1,0 +1,11 @@
+﻿@using Brazilla.Web.Views.Shared.Components.LoginButton
+@model LoginButtonViewModel
+
+@if(Model.IsLoginder == true)
+{
+    <a class="btn btn-outline-success" href="@Url.Action("SignOut", "User")">Logout</a>
+}
+else
+{
+    <a class="btn btn-outline-success" href="@Url.Action("SignIn", "User")">Login</a>
+}

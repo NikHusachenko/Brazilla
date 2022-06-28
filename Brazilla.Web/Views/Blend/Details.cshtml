@@ -1,0 +1,39 @@
+﻿@using Brazilla.Web.Models.Blend
+@model DetailsViewModel
+
+<section class="product-area gray-bg pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="product-details-wrap">
+                    <div class="product-details-tab">
+                        <div class="tab-content product-tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="item-details" role="tabpanel" aria-labelledby="item-details-tab">
+                                <div class="product-details-content">
+                                    <h3>@Model.Blend.Name (@Model.Blend.Id)</h3>
+                                    <p>@Model.Blend.Description</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum dolor in fermentum dapibus. 
+                                        Vivamus fermentum, lacus vitae laoreet placerat, orci mi gravida enim, at consectetur libero augue in purus. 
+                                        Suspendisse sit amet mollis sem, faucibus convallis est. Vivamus vel faucibus justo. Cras eu varius risus. 
+                                        Nunc accumsan enim quis tortor convallis, et elementum eros consequat. Mauris non convallis risus. 
+                                        Duis dictum ligula in ante fermentum, at efficitur libero aliquet. Aliquam ac tortor sodales, tincidunt nulla 
+                                        sed, posuere neque. Mauris sed hendrerit nisi. Fusce nulla est, congue sed ante pellentesque, luctus iaculis 
+                                        risus. Aenean vitae arcu lacus.</p>
+                                    <div class="product-details-features">
+                                        <ul>
+                                            <li>Weight: @Model.Blend.Weight</li>
+                                            <li>Price: @Model.Blend.Price</li>
+                                            <li>Left: @Model.Blend.Left</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+</section>

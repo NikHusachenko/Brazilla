@@ -1,0 +1,24 @@
+﻿@using Brazilla.Database.Entities
+@using Brazilla.Web.Models.Blend
+@using Brazilla.Web.Views.Shared.Components.BlendsItemComponent
+@model BlendsViewModel
+
+<section class="product-area s-product-area pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+            @if(Model.Blends.Count == 0)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <h1>No one product of this type</h1>
+                </div>
+            }
+            else
+            {
+                @foreach(CoffeeBlendEntity blend in Model.Blends)
+                {
+                    <partial name="_BlendsItemPartial", model="new BlendsItemViewModel() { Blend = blend }" />
+                }
+            }
+        </div>
+    </div>
+</section>

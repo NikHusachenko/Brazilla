@@ -1,0 +1,31 @@
+﻿@using Brazilla.Web.Views.Shared.Components.TypesTableComponent
+@model TypesTableViewModel
+
+@if(Model.Types.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Type name</th>
+                <th scope="col">Arabica</th>
+                <th scope="col">Robusta</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var type in Model.Types)
+            {
+                <tr>
+                    <td class="forums-author-thumb">@type.Name</td>
+                    <td class="author-support-title">@type.Arabica</td>
+                    <td class="support-post-comment">@type.Robusta</td>
+                    <td class="support-post-time"><a href="@Url.Action("Delete", "BlendTypes", new { @id = @type.Id})">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>No blend types</h4>
+}

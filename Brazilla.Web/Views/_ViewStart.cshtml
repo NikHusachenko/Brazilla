@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Brazilla Home</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <partial name="_NavbarPartial" />
+            <partial name="_LoginButtonPartial" />
+        </div>
+    </div>
+</nav>

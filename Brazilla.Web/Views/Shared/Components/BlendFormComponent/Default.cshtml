@@ -1,0 +1,17 @@
+﻿@using Brazilla.Web.Views.Shared.Components.BlendFormComponent
+@model BlendFormViewModel
+
+<select id="type" style="width: 450px; height: 60px; margin-bottom: 20px;">
+    <option selected="selected" disabled="disabled">Blend type</option>
+    @if(Model.Types.Count == 0)
+    {
+        <option disabled="disabled">No types</option>
+    }
+    else
+    {
+        for(int i = 0; i < Model.Types.Count; i++)
+        {
+            <option value="@Model.Types[i].Id">@Model.Types[i].Name</option>
+        }
+    }
+</select>

@@ -1,0 +1,38 @@
+﻿@using Brazilla.Database.Entities
+@using Brazilla.Web.Views.Shared.Components.BlendTableComponent
+@model BlendTableViewModel
+
+@if(Model.Blends.Count == 0)
+{
+    <h3>No blends</h3>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Prices</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Left</th>
+                <th scope="col">Type</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>  
+            @foreach (CoffeeBlendEntity blend in Model.Blends)
+            {
+                <tr>                
+                    <td class="support-post-comment">
+                        <a href="@Url.Action("Details", "Blend", new {@id = @blend.Id})">@blend.Name</a>
+                    </td>
+                    <td class="support-post-comment">@blend.Price</td>
+                    <td class="support-post-comment">@blend.Weight</td>
+                    <td class="support-post-comment">@blend.Left</td>
+                    <td class="support-post-comment">@blend.Type.Name</td>
+                    <td class="support-post-time"><a href="@Url.Action("Delete", "Blend", new { @id = @blend.Id })">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

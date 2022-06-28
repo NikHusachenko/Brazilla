@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Brazilla.Commons\Brazilla.Commons.csproj" />
+    <ProjectReference Include="..\Brazilla.Database\Brazilla.Database.csproj" />
+    <ProjectReference Include="..\Brazilla.EntityFramework\Brazilla.EntityFramework.csproj" />
+    <ProjectReference Include="..\Brazilla.Services\Brazilla.Services.csproj" />
+  </ItemGroup>
+
+</Project>

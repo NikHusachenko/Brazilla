@@ -1,0 +1,67 @@
+﻿<div class="limiter">
+	<div class="container-login100">
+        <div class="product-area gray-bg pt-50 pb-50">
+            <div class="container">
+                <h1>Blend types settings</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="forums-table-responsive">
+                            <partial name="_TypesTablePartial" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <aside class="vendor-profile-sidebar">
+                            <div class="sidebar-author-contact">
+                                <h5 class="vendor-sidebar-title">Append new blend type</h5>
+                                <div class="container" id="errorContainer"></div>
+                                <div class="sac-form">
+                                    <form>
+                                        <input type="text" id="name" placeholder="Type name*">
+                                        <input type="number" id="arabica" placeholder="Arabica*">
+                                        <input type="number" id="robusta" placeholder="Robusta*">
+                                        <input type="button" id="submitBtn" class="btn" value="Create new" />
+                                    </form>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$("#submitBtn").click(() => {
+    let data = {
+        name: $("#name").val(),
+        arabica: $("#arabica").val(),
+        robusta: $("#robusta").val(),
+    };
+
+    let jsonData = JSON.stringify(data);
+    document.getElementById('errorContainer').innerHTML = '<h4 id="errorLabel">Creating...</h4>'
+    let errorLabel = document.getElementById('errorLabel');
+
+    $.ajax({
+        url: '@Url.Action("Settings", "BlendTypes")',
+        method: 'post',
+        data: jsonData,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: (response) => {
+            location.href = response.responseMessage;
+        },
+        error: (response) => {
+            errorLabel.innerHTML = response.responseJSON.responseMessage;
+        }
+    });
+
+    setTimeout(() => {
+        errorLabel.remove();
+    }, 5000);
+});
+</script>

@@ -1,0 +1,36 @@
+﻿@using Brazilla.Web.Views.Shared.Components.BlendsItemComponent
+@model BlendsItemViewModel
+
+<div class="col-lg-4 col-md-6">
+    <div class="product-item mb-40">
+        <div class="product-item-content">
+            <div class="product-cat mb-10">
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Details", "Blend", new {@id = @Model.Blend.Id})">@Model.Blend.Name</a> <br />
+                        <a href="@Url.Action("Blends", "Blend", new {@typeId = @Model.Blend.Type.Id})">@Model.Blend.Type.Name</a>
+                    </li>
+                    <li>
+                        $@Model.Blend.Price
+                        <br />
+                        W: @Model.Blend.Weight
+                    </li>
+                </ul>
+            </div>
+            <h4>@Model.Blend.Description</h4>
+        </div>
+        <div class="product-meta">
+            <ul class="pagination">
+                <li>Left @Model.Blend.Left</li>
+                @if(Model.Blend.Left > 0)
+                {
+                    <li class="page-item">
+                        <a id="buy" href="@Url.Action("Buy", "Blend", new {@blendId = @Model.Blend.Id, @buyerId = @Model.buyerId})">
+                            +
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
